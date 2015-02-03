@@ -271,8 +271,8 @@ cr.plugins_.social = function(runtime) {
                 'attachments': [{
                     'type': "image/png",
                     'name': nameAndExtension,
-                    'content': base64String,
-                }],
+                    'content': base64String
+                }]
             }
 
         };
