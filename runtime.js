@@ -162,7 +162,7 @@ cr.plugins_.social = function(runtime) {
 
     Acts.prototype.PingAcount = function() {
 
-        var m = new mandrill.Mandrill(api_key);
+        var m = new window["mandrill"]["Mandrill"](api_key);
 
         var self = this;
 
@@ -170,7 +170,7 @@ cr.plugins_.social = function(runtime) {
             console.log(JSON.stringify(obj));
         }
 
-        m.users.ping(function(res) {
+        m["users"]["ping"](function(res) {
             log(res);
             self.runtime.trigger(cr.plugins_.social.prototype.cnds.OnPingOk, self);
             //return res;
@@ -186,7 +186,7 @@ cr.plugins_.social = function(runtime) {
 
         function isEmail(myVar) {
             // La 1ère étape consiste à définir l'expression régulière d'une adresse email
-            var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$', 'i');
+            var regEmail = new window["RegExp"]('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$', 'i');
 
             return regEmail.test(myVar);
         }
@@ -201,14 +201,14 @@ cr.plugins_.social = function(runtime) {
     }
 
     Acts.prototype.ReadMailStats = function(id) {
-        var m = new mandrill.Mandrill(api_key);
+        var m = new window["mandrill"]["Mandrill"](api_key);
 
         var self = this;
 
         console.log(id)
 
         if (id !== "") {
-            m.messages.info({
+            m["messages"]["info"]({
                 "id": id
             }, function(result) {
                 console.log(result);
@@ -228,11 +228,11 @@ cr.plugins_.social = function(runtime) {
     // the example action
     Acts.prototype.SendMyMail = function(from_mail, from_name, pour_mail, pour_nom, sujet, message, nameAndExtension, base64String, tag) {
 
-        var m = new mandrill.Mandrill(api_key);
+        var m = new window["mandrill"]["Mandrill"](api_key);
 
         function isEmail(myVar) {
             // La 1ère étape consiste à définir l'expression régulière d'une adresse email
-            var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$', 'i');
+            var regEmail = new window["RegExp"]('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$', 'i');
 
             return regEmail.test(myVar);
         }
@@ -280,7 +280,7 @@ cr.plugins_.social = function(runtime) {
 
         function sendTheMail() {
 
-            m.messages.send(params, function(res) {
+            m["messages"]["send"](params, function(res) {
                 console.log(res);
                 lastID = res[0]._id;
             }, function(err) {
